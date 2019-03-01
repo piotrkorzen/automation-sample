@@ -1,0 +1,4 @@
+python3.7
+selenium3.14
+pytest4.15
+allure
