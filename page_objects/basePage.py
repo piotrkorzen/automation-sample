@@ -28,8 +28,9 @@ class BasePage(object):
 
     def select(self, locator, value):
         self.driver.instance.implicitly_wait(2)
-        option = Select(self.driver.instance.find_element(*locator))
-        option.select_by_value(str(value))
+        self.option = Select(self.driver.instance.find_element(*locator))
+        self.option.select_by_visible_text(str(value))
+
 
     def validate_element_present(self, locator):
         element = WebDriverWait(self.driver.instance, 25).until(EC.visibility_of_element_located(
@@ -55,5 +56,21 @@ class BasePage(object):
         WebDriverWait(self.driver.instance, 15).until(EC.visibility_of_element_located(
             (locator)))
 
+    def hover(self, locator):
+        WebDriverWait(self.driver.instance, 100).until(
+            lambda driver: self.driver.instance.find_element(*locator))
+        element = self.driver.instance.find_element(*locator)
+        hover = ActionChains(self.driver.instance).move_to_element(element)
+        hover.perform()
 
-
+    def get_items_from_dropdown(self, locator):
+        self.items = []
+        element = WebDriverWait(self.driver.instance, 10).until(
+            lambda driver: self.driver.instance.find_element(*locator))
+        all_options = element.find_elements_by_tag_name("option" or "mer-option")
+        for option in all_options:
+            item = option.get_attribute("text")
+            self.items.append(item)
+        self.items_counter = len(self.items)
+        print(*self.items, sep='\n')
+        print("The number of items on the list is: ", self.items_counter)

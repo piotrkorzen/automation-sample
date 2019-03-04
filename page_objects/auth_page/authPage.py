@@ -2,9 +2,9 @@ from locators.authPageLocators import AuthLocators as apl
 from page_objects.basePage import BasePage
 import allure
 import random
-import time
 
-"""All items connected with authorization e.g. create account, login into account"""
+
+"""Class contains functions for register new user"""
 
 class CreateAccount(BasePage):
 
@@ -17,6 +17,7 @@ class CreateAccount(BasePage):
         self.click(self.submit_create)
 
 class FillAccountForm(BasePage):
+
 
     gender_man = apl.gender_male_css
     cust_fname = apl.cust_fname_id
@@ -37,20 +38,21 @@ class FillAccountForm(BasePage):
     days_value = random.randint(1, 31)
     month_value = random.randint(1, 12)
     years_value = random.randint(1900, 2019)
-    state_value = random.randint(1, 50)
-    postal_value = random.randint(10000, 99999)
-    mobile_value = random.randint(100000000, 999999999)
+    dropdown_state_label = apl.dropdown_state_label_xp
 
-    @allure.step("Fill all inputs - create account form")
-    def fill_form_inputs(self, name, surname, password):
+    @allure.step("Fill basic - create account form")
+    def fill_form_basics(self, name, surname, password):
         self.send_keys(self.cust_fname, name)
         self.send_keys(self.cust_lname, surname)
         self.send_keys(self.password, password)
+
+    @allure.step("Fill address - create account form")
+    def fill_form_address(self, postal, mobile):
         self.send_keys(self.company, "Company")
         self.send_keys(self.city, "Washington")
         self.send_keys(self.address, "White House Avenue")
-        self.send_keys(self.postal, self.postal_value)
-        self.send_keys(self.mobile, self.mobile_value)
+        self.send_keys(self.postal, postal)
+        self.send_keys(self.mobile, mobile)
 
     @allure.step("Choose date of birth - create account form")
     def fill_form_date_of_birth(self):
@@ -59,15 +61,59 @@ class FillAccountForm(BasePage):
         self.select(self.years, self.years_value)
 
     @allure.step("Choose state from lists - create account form")
-    def fill_form_address(self):
-        self.select(self.state, self.state_value)
+    def fill_form_state(self, state):
+        self.select(self.state, state)
 
     @allure.step("Mark checkboxes - create account form")
     def fill_form_checkboxes(self):
-        self.click(self.gender_man)
-        self.click(self.newsletter)
-        self.click(self.offers)
+        self.click_clickable(self.gender_man)
+        self.click_clickable(self.newsletter)
+        self.click_clickable(self.offers)
 
     @allure.step("Click register - create account form")
     def click_register(self):
         self.click_clickable(self.register)
+
+
+"""Class contains functions for checking is each item can be selected from form dropdown lists"""
+
+class CheckDropdownItemsForm(FillAccountForm):
+
+
+    # function for validate is element selected correctly
+
+    def validate_item_is_selected(self, locator, value):
+        self.select(locator, value)
+        if self.option.first_selected_option.get_attribute('text') == value:
+            assert True
+        else:
+            print("Item ", value, "has not been selected")
+            raise AssertionError("Items have not been selected")
+
+    @allure.step("Each item from days dropdown can be selected")
+    def check_days_dropdown(self):
+        self.get_items_from_dropdown(self.days)
+
+        for item in self.items:
+            self.validate_item_is_selected(self.days, item)
+
+    @allure.step("Each item from months dropdown can be selected")
+    def check_months_dropdown(self):
+        self.get_items_from_dropdown(self.months)
+
+        for item in self.items:
+            self.validate_item_is_selected(self.months, item)
+
+    @allure.step("Each item from years dropdown can be selected")
+    def check_years_dropdown(self):
+        self.get_items_from_dropdown(self.years)
+
+        for item in self.items:
+            self.validate_item_is_selected(self.years, item)
+
+    @allure.step("Each item from state dropdown can be selected")
+    def check_state_dropdown(self):
+        self.get_items_from_dropdown(self.dropdown_state_label)
+
+        for item in self.items:
+            self.validate_item_is_selected(self.state, item)
