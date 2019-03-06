@@ -16,15 +16,9 @@ class Driver:
             self.instance.maximize_window()
             self.instance.get(url)
         else:
-            raise TypeError ("URL must be a string.")
-
-
+            raise TypeError("URL must be a string.")
 
 # webdriver.Remote(
 #    command_executor='http://127.0.0.1:4444/wd/hub',
 #    desired_capabilities=DesiredCapabilities.CHROME,
 #             options=chrome_options)
-
-
-
-

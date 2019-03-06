@@ -6,6 +6,7 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BasePage(object):
 
     def __init__(self, driver):
@@ -30,7 +31,6 @@ class BasePage(object):
         self.driver.instance.implicitly_wait(2)
         self.option = Select(self.driver.instance.find_element(*locator))
         self.option.select_by_visible_text(str(value))
-
 
     def validate_element_present(self, locator):
         element = WebDriverWait(self.driver.instance, 25).until(EC.visibility_of_element_located(
@@ -57,7 +57,7 @@ class BasePage(object):
             (locator)))
 
     def hover(self, locator):
-        WebDriverWait(self.driver.instance, 100).until(
+        WebDriverWait(self.driver.instance, 10).until(
             lambda driver: self.driver.instance.find_element(*locator))
         element = self.driver.instance.find_element(*locator)
         hover = ActionChains(self.driver.instance).move_to_element(element)

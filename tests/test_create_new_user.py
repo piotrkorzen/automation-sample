@@ -13,7 +13,6 @@ class TestAuth():
     mobile_value = random.randint(100000000, 999999999)
     state_value = random.randint(1, 50)
 
-
     @pytest.fixture()
     def test_setup(self):
         self.driver = Driver()
@@ -36,4 +35,3 @@ class TestAuth():
         fill_form.fill_form_date_of_birth()
         fill_form.fill_form_state(self.state_value)
         fill_form.click_register()
-

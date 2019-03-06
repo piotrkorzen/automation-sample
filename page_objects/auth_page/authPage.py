@@ -3,8 +3,8 @@ from page_objects.basePage import BasePage
 import allure
 import random
 
-
 """Class contains functions for register new user"""
+
 
 class CreateAccount(BasePage):
 
@@ -16,8 +16,8 @@ class CreateAccount(BasePage):
         self.send_keys(self.email_create, email)
         self.click(self.submit_create)
 
-class FillAccountForm(BasePage):
 
+class FillAccountForm(BasePage):
 
     gender_man = apl.gender_male_css
     cust_fname = apl.cust_fname_id
@@ -77,8 +77,8 @@ class FillAccountForm(BasePage):
 
 """Class contains functions for checking is each item can be selected from form dropdown lists"""
 
-class CheckDropdownItemsForm(FillAccountForm):
 
+class CheckDropdownItemsForm(FillAccountForm):
 
     # function for validate is element selected correctly
 

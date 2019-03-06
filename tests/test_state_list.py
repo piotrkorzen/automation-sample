@@ -8,7 +8,6 @@ from data.dataGenerators import *
 
 class TestAuth():
 
-
     @pytest.fixture()
     def test_setup(self):
         self.driver = Driver()
@@ -29,4 +28,3 @@ class TestAuth():
         dropdowns.check_months_dropdown()
         dropdowns.check_years_dropdown()
         dropdowns.check_state_dropdown()
-
