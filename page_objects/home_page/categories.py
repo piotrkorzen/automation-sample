@@ -86,9 +86,8 @@ class WomenCategoriesProducts(WomenCategories):
     def validate_sort_prices_desc(self):
         sort_desc = sorted(self.get_product_price(), reverse=True)
         if sort_desc == self.get_product_price():
-            print(sort_desc, "\n")
+            print(self.price_list, sort_desc, "Descending sorting is valid")
             assert True
         else:
-            print(sort_desc, "\n")
-            print("Ascending sorting is not valid")
+            print(self.price_list, sort_desc, "Descending sorting is NOT valid")
             assert False
