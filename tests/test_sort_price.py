@@ -21,4 +21,4 @@ class TestSortBy():
         prod.sort_by_price_highest_first()
 
         self.driver.instance.implicitly_wait(10)
-        prod.validate_sort_products()
+        prod.validate_sort_prices_asc()

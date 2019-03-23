@@ -56,6 +56,7 @@ class WomenCategories(BasePage):
 class WomenCategoriesProducts(WomenCategories):
 
     sort_by_list = cl.sort_by_list_xp
+    prices = cl.prices_xp
 
     @allure.step("Sort products by")
     def sort_by_all(self):
@@ -64,16 +65,30 @@ class WomenCategoriesProducts(WomenCategories):
     def sort_by_price_highest_first(self):
         self.select(self.sort_by_list, "Price: Highest first")
 
-    def validate_sort_products(self):
-        item_list = []
-        prices = self.driver.instance.find_elements_by_xpath("//div[@class='right-block']//span[@class='price product-price']")
+    def get_product_price(self):
+        self.price_list = []
+        prices = self.driver.instance.find_elements_by_xpath(self.prices)
         for item in prices:
-            prices2 = item.text
-            pr = prices2.strip("$")
-            print(pr)
-        # print(prices2)
-        # soup = BeautifulSoup(plain_text,
-        #                      features="html.parser")  # this format source code to more readable (sorting, searching things)
-        # for link in soup.findAll('a', {
-        #     'class': 'woocommerce-LoopProduct-link'}):  # this loop finds all links ('a') which class = woocommerce-loop-product__title
-        #     href = link.get('href')
+            dollar_price = item.text
+            price = dollar_price.strip("$")
+            self.price_list.append(price)
+        return self.price_list
+
+    def validate_sort_prices_asc(self):
+        sort_asc = sorted(self.get_product_price())
+        if sort_asc == self.get_product_price():
+            print(self.price_list, sort_asc, "Ascending sorting is valid")
+            assert True
+        else:
+            print(self.price_list, sort_asc, "Ascending sorting is NOT valid")
+            assert False
+
+    def validate_sort_prices_desc(self):
+        sort_desc = sorted(self.get_product_price(), reverse=True)
+        if sort_desc == self.get_product_price():
+            print(sort_desc, "\n")
+            assert True
+        else:
+            print(sort_desc, "\n")
+            print("Ascending sorting is not valid")
+            assert False
