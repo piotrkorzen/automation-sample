@@ -69,8 +69,17 @@ class BasePage(object):
             lambda driver: self.driver.instance.find_element(*locator))
         all_options = element.find_elements_by_tag_name("option" or "mer-option")
         for option in all_options:
-            item = option.get_attribute("text")
-            self.items.append(item)
+            self.item = option.get_attribute("text")
+            self.items.append(self.item)
         self.items_counter = len(self.items)
         print(*self.items, sep='\n')
         print("The number of items on the list is: ", self.items_counter)
+
+    # function for validate is element selected correctly
+    def validate_item_is_selected(self, locator, value):
+        self.select(locator, value)
+        if self.option.first_selected_option.get_attribute('text') == value:
+            assert True
+        else:
+            print("Item ", value, "has not been selected")
+            raise AssertionError("Items have not been selected")

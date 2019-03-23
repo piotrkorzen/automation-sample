@@ -80,16 +80,6 @@ class FillAccountForm(BasePage):
 
 class CheckDropdownItemsForm(FillAccountForm):
 
-    # function for validate is element selected correctly
-
-    def validate_item_is_selected(self, locator, value):
-        self.select(locator, value)
-        if self.option.first_selected_option.get_attribute('text') == value:
-            assert True
-        else:
-            print("Item ", value, "has not been selected")
-            raise AssertionError("Items have not been selected")
-
     @allure.step("Each item from days dropdown can be selected")
     def check_days_dropdown(self):
         self.get_items_from_dropdown(self.days)
