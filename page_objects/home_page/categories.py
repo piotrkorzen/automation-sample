@@ -57,6 +57,7 @@ class WomenCategoriesProducts(WomenCategories):
 
     sort_by_list = cl.sort_by_list_xp
     prices = cl.prices_xp
+    products = cl.products_xp
 
     @allure.step("Sort products by")
     def sort_by_all(self):
@@ -74,20 +75,31 @@ class WomenCategoriesProducts(WomenCategories):
             self.price_list.append(price)
         return self.price_list
 
-    def validate_sort_prices_asc(self):
-        sort_asc = sorted(self.get_product_price())
+    def get_product_names(self):
+        self.product_list = []
+        products = self.driver.instance.find_elements_by_xpath(self.products)
+        for item in products:
+              product_name = item.text
+              self.product_list.append(product_name)
+        return self.product_list
+
+    def validate_sort_asc(self, values):
+        sort_asc = sorted(values)
         if sort_asc == self.get_product_price():
-            print(self.price_list, sort_asc, "Ascending sorting is valid")
+            print(values, sort_asc, "Ascending sorting is valid")
             assert True
         else:
-            print(self.price_list, sort_asc, "Ascending sorting is NOT valid")
+            print(values, sort_asc, "Ascending sorting is NOT valid")
             assert False
 
-    def validate_sort_prices_desc(self):
-        sort_desc = sorted(self.get_product_price(), reverse=True)
+    def validate_sort_desc(self, values):
+        sort_desc = sorted(values, reverse=True)
         if sort_desc == self.get_product_price():
-            print(self.price_list, sort_desc, "Descending sorting is valid")
+            print(values, sort_desc, "Descending sorting is valid")
             assert True
         else:
-            print(self.price_list, sort_desc, "Descending sorting is NOT valid")
+            print(values, sort_desc, "Descending sorting is NOT valid")
             assert False
+
+
+
