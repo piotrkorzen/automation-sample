@@ -2,7 +2,6 @@ from locators.homePageLocators import HomePageLocators as hpl
 from locators.categoriesLocators import CategoriesLocators as cl
 from page_objects.basePage import BasePage
 import allure
-from bs4 import BeautifulSoup
 
 
 class WomenCategories(BasePage):
@@ -65,6 +64,15 @@ class WomenCategoriesProducts(WomenCategories):
 
     def sort_by_price_highest_first(self):
         self.select(self.sort_by_list, "Price: Highest first")
+
+    def sort_by_price_lowest_first(self):
+        self.select(self.sort_by_list, "Price: Lowest first")
+
+    def sort_by_name_a_to_z(self):
+        self.select(self.sort_by_list, "Product Name: A to Z")
+
+    def sort_by_name_z_to_a(self):
+        self.select(self.sort_by_list, "Product Name: Z to A")
 
     def get_product_price(self):
         self.price_list = []
