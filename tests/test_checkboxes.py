@@ -13,4 +13,5 @@ class TestCheckboxes():
 
     def test_size_l(self, test_setup):
         checkboxes = Checboxes(self.driver)
-        checkboxes.get_all_checkboxes()
+        # checkboxes.click_size_checkboxes()
+        checkboxes.click_composition_checkboxes()

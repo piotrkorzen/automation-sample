@@ -83,3 +83,13 @@ class BasePage(object):
         else:
             print("Item ", value, "has not been selected")
             raise AssertionError("Items have not been selected")
+
+    def click_all_checkboxes(self, locator):
+        checkboxes = self.driver.instance.find_elements(*locator)
+        for checkbox in checkboxes:
+            if not checkbox.is_selected():
+                checkbox.click()
+            if checkbox.is_selected():
+                assert True
+            else:
+                assert False
