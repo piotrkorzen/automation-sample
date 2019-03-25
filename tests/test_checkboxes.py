@@ -11,7 +11,12 @@ class TestCheckboxes():
         yield
         self.driver.instance.quit()
 
-    def test_size_l(self, test_setup):
+    def test_mark_checkboxes(self, test_setup):
         checkboxes = Checboxes(self.driver)
-        # checkboxes.click_size_checkboxes()
+        checkboxes.click_size_checkboxes()
         checkboxes.click_composition_checkboxes()
+        checkboxes.click_style_checkboxes()
+        checkboxes.click_properties_checkboxes()
+        checkboxes.click_availability_checkbox()
+        checkboxes.click_manufacturer_checkbox()
+        checkboxes.click_condition_checkbox()
