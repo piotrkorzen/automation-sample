@@ -9,24 +9,37 @@ class Checboxes(BasePage):
 
     group_size = chl.group_size_xp
     compositions = chl.group_compositions_xp
-    styles = chl.styles_xp
-    properties = chl.properties_xp
-    availability = chl.availability_xp
-    manufacturer = chl.manufacturer_xp
-    condition = chl.condition_xp
+    styles = chl.group_styles_xp
+    properties = chl.group_properties_xp
+    availability = chl.group_availability_xp
+    manufacturer = chl.group_manufacturer_xp
+    condition = chl.group_condition_xp
+    slider1 = chl.slider_xp
+    tops=size_s=cotton=casual=colorful_dress=\
+        in_stock=fashion_man=new=2
 
-    def click_all_checkboxes(self, locator):
+    def click_all_checkboxes(self, locator, check=None):
         checkboxes = self.driver.instance.find_elements(*locator)
-        for checkbox in checkboxes:
-            if not checkbox.is_selected():
-                checkbox.click()
-            if checkbox.is_selected():
-                assert True
-            else:
-                assert False
+
+        if check is not None:
+            checkboxes[check].click()
+        elif check == None:
+            for checkbox in checkboxes:
+                if not checkbox.is_selected():
+                    checkbox.click()
+                if checkbox.is_selected():
+                    assert True
+                else:
+                    assert False
+        else:
+            print("Any checkbox haven't been selected!")
+
+    def price_slider(self):
+        self.slider(self.slider1, 40,0)
+
 
     def click_size_checkboxes(self):
-        self.click_all_checkboxes(self.group_size)
+        self.click_all_checkboxes(self.group_size, self.size_s)
 
     def click_composition_checkboxes(self):
         self.click_all_checkboxes(self.compositions)

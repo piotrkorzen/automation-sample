@@ -1,7 +1,7 @@
 from settings.webdriver import Driver
-from page_objects.options_bar.checkboxes import *
+from page_objects.options_bar.catalog import *
 import pytest
-
+import time
 class TestCheckboxes():
 
     @pytest.fixture()
@@ -13,10 +13,5 @@ class TestCheckboxes():
 
     def test_mark_checkboxes(self, test_setup):
         checkboxes = Checboxes(self.driver)
-        checkboxes.click_size_checkboxes()
-        checkboxes.click_composition_checkboxes()
-        checkboxes.click_style_checkboxes()
-        checkboxes.click_properties_checkboxes()
-        checkboxes.click_availability_checkbox()
-        checkboxes.click_manufacturer_checkbox()
-        checkboxes.click_condition_checkbox()
+        checkboxes.price_slider()
+        time.sleep(5)

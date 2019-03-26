@@ -83,3 +83,8 @@ class BasePage(object):
         else:
             print("Item ", value, "has not been selected")
             raise AssertionError("Items have not been selected")
+
+    def slider(self, locator, *offset):
+        slider = self.driver.instance.find_element_by_xpath(locator)
+        move = ActionChains(self)
+        move.click_and_hold(slider).move_by_offset(*offset).release().perform()
