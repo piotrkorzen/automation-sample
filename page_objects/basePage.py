@@ -85,6 +85,7 @@ class BasePage(object):
             raise AssertionError("Items have not been selected")
 
     def slider(self, locator, *offset):
-        slider = self.driver.instance.find_element_by_xpath(locator)
-        move = ActionChains(self)
+        slider = WebDriverWait(self.driver.instance, 10).until(EC.visibility_of_element_located(
+            (locator)))
+        move = ActionChains(self.driver.instance)
         move.click_and_hold(slider).move_by_offset(*offset).release().perform()
