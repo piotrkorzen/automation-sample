@@ -3,7 +3,6 @@ from page_objects.options_bar.catalog import *
 import pytest
 import time
 
-"""Tests for checking whether checkboxes in left bar are clickable"""
 
 class TestCheckboxes():
 
@@ -16,14 +15,13 @@ class TestCheckboxes():
         time.sleep(3)
         self.driver.instance.quit()
 
+    """Tests for checking whether checkboxes in left bar are clickable"""
+
     def test_mark_categories(self, test_setup):
         self.checkboxes.click_categories_checkboxes()
 
     def test_mark_size(self, test_setup):
         self.checkboxes.click_size_checkboxes()
-
-    def test_mark_color(self, test_setup):
-        self.checkboxes.click_color_checkboxes()
 
     def test_mark_composition(self, test_setup):
         self.checkboxes.click_composition_checkboxes()
@@ -43,3 +41,7 @@ class TestCheckboxes():
     def test_mark_condition(self, test_setup):
         self.checkboxes.click_condition_checkbox()
 
+    """Test for checking whether colours are clickable"""
+
+    def test_mark_color(self, test_setup):
+        self.checkboxes.click_color_checkboxes()

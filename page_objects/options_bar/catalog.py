@@ -5,14 +5,14 @@ from locators.checkboxLocators import CheckboxLocators as chl
 class Checboxes(BasePage):
     categories = chl.group_categories_xp
     size = chl.group_size_xp
-    color = chl.group_color_xp
     compositions = chl.group_compositions_xp
     styles = chl.group_styles_xp
     properties = chl.group_properties_xp
     availability = chl.group_availability_xp
     manufacturer = chl.group_manufacturer_xp
     condition = chl.group_condition_xp
-    slider1 = chl.slider_xp
+    price_slider = chl.price_slider_xp
+    dressy = chl.dressy_xp
 
     def click_checkboxes(self, locator):
         checkboxes = self.driver.instance.find_elements(*locator)
@@ -24,17 +24,14 @@ class Checboxes(BasePage):
             else:
                 assert False
 
-    def price_slider(self):
-        self.slider(self.slider1, 40, 0)
+    def left_slider(self):
+        self.slider(self.price_slider, 40, 0)
 
     def click_categories_checkboxes(self):
         self.click_checkboxes(self.categories)
 
     def click_size_checkboxes(self):
         self.click_checkboxes(self.size)
-
-    def click_color_checkboxes(self):
-        self.click_checkboxes(self.color)
 
     def click_composition_checkboxes(self):
         self.click_checkboxes(self.compositions)

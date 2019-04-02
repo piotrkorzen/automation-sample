@@ -14,4 +14,7 @@ class CheckboxLocators:
     group_manufacturer_xp       = (By.XPATH, "//ul[@id='ul_layered_manufacturer_0']//input[contains(@id, 'layered_manufacturer_1')][@type='checkbox']")
     group_condition_xp          = (By.XPATH, "//ul[@id='ul_layered_condition_0']//input[contains(@id, 'layered_condition_new')][@type='checkbox']")
 
-    slider_xp                   = (By.XPATH, "//div[@class='layered_price']//a[1]")
+    # single checkboxes
+    dressy_xp                   = (By.XPATH, "//input[@id='layered_id_feature_16']")
+
+    price_slider_xp             = (By.XPATH, "//div[@class='layered_price']//a[1]")
