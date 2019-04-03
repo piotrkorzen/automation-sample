@@ -1,5 +1,4 @@
 from settings.webdriver import Driver
-import os
 import pytest
 from page_objects.home_page.header import Header
 from page_objects.auth_page.authPage import *

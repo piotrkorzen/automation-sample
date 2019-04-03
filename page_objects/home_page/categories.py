@@ -74,6 +74,13 @@ class WomenCategoriesProducts(WomenCategories):
     def sort_by_name_z_to_a(self):
         self.select(self.sort_by_list, "Product Name: Z to A")
 
+    def click_product(self, value):
+        self.product_for_click = []
+        products = self.driver.instance.find_elements_by_xpath(self.products)
+        for product in products:
+            self.product_for_click.append(product)
+        self.product_for_click[value].click()
+
     def get_product_price(self):
         self.price_list = []
         prices = self.driver.instance.find_elements_by_xpath(self.prices)
