@@ -9,7 +9,7 @@ class Driver:
         chrome_options = webdriver.ChromeOptions()
         prefs = {"profile.default_content_setting_values.notifications": 1}
         chrome_options.add_experimental_option("prefs", prefs)
-        self.instance = webdriver.Chrome(options=chrome_options)
+        self.instance = webdriver.Chrome(options=chrome_options, executable_path=r'/usr/share/applications/google-chrome.desktop')
 
     def navigate(self, url):
         if isinstance(url, str):
