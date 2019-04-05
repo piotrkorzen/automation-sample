@@ -25,8 +25,8 @@ class TestAuth():
     def test_month_list(self, test_setup):
         self.dropdowns.check_months_dropdown()
 
-    def test_year_list(self, test_setup):
-        self.dropdowns.check_years_dropdown()
+    # def test_year_list(self, test_setup):
+    #     self.dropdowns.check_years_dropdown()
 
     def test_state_list(self, test_setup):
         self.dropdowns.check_state_dropdown()

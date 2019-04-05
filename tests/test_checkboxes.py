@@ -40,8 +40,3 @@ class TestCheckboxes():
 
     def test_mark_condition(self, test_setup):
         self.checkboxes.click_condition_checkbox()
-
-    """Test for checking whether colours are clickable"""
-
-    def test_mark_color(self, test_setup):
-        self.checkboxes.click_color_checkboxes()
