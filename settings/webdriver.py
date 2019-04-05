@@ -12,7 +12,7 @@ class Driver:
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
-        self.instance = webdriver.Chrome(options=chrome_options, executable_path=r'chromedriver.exe')
+        self.instance = webdriver.Chrome(options=chrome_options, executable_path='chromedriver.exe')
 
     def navigate(self, url):
         if isinstance(url, str):
