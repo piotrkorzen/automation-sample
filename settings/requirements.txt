@@ -1,4 +1,4 @@
-python3.7
-selenium3.14
-pytest4.15
-allure
+python==3.7.1
+selenium==3.14
+pytest==4.40
+allure==2.61
