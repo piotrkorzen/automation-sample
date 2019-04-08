@@ -15,7 +15,7 @@ class TestWomenCategories():
     """Test for check visibility of subcategories from home page"""
 
     def test_subcategories_are_visible(self, test_setup):
-        self.driver.navigate(os.getenv('u'))
+        self.driver.navigate('http://automationpractice.com/index.php')
 
         wm = WomenCategories(self.driver)
 

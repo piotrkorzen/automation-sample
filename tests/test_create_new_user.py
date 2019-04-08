@@ -20,7 +20,7 @@ class TestAuth():
         self.driver.instance.quit()
 
     def test_create_account(self, test_setup):
-        self.driver.navigate(os.getenv('u'))
+        self.driver.navigate('http://automationpractice.com/index.php')
         sign_in = Header(self.driver)
         sign_in.sign_in_button()
 
