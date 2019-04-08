@@ -74,6 +74,7 @@ class WomenCategoriesProducts(WomenCategories):
     def sort_by_name_z_to_a(self):
         self.select(self.sort_by_list, "Product Name: Z to A")
 
+    @allure.step("Click product")
     def click_product(self, value):
         self.product_for_click = []
         products = self.driver.instance.find_elements_by_xpath(self.products)
@@ -81,6 +82,7 @@ class WomenCategoriesProducts(WomenCategories):
             self.product_for_click.append(product)
         self.product_for_click[value].click()
 
+    @allure.step("Get product price")
     def get_product_price(self):
         self.price_list = []
         prices = self.driver.instance.find_elements_by_xpath(self.prices)
@@ -90,6 +92,7 @@ class WomenCategoriesProducts(WomenCategories):
             self.price_list.append(price)
         return self.price_list
 
+    @allure.step("Get product names")
     def get_product_names(self):
         self.product_list = []
         products = self.driver.instance.find_elements_by_xpath(self.products)
@@ -98,6 +101,7 @@ class WomenCategoriesProducts(WomenCategories):
               self.product_list.append(product_name)
         return self.product_list
 
+    @allure.step("Validate sort asc")
     def validate_sort_asc(self, values):
         sort_asc = sorted(values)
         if sort_asc == self.get_product_price():
@@ -107,6 +111,7 @@ class WomenCategoriesProducts(WomenCategories):
             print(values, sort_asc, "Ascending sorting is NOT valid")
             assert False
 
+    @allure.step("Validate sort desc")
     def validate_sort_desc(self, values):
         sort_desc = sorted(values, reverse=True)
         if sort_desc == self.get_product_price():
