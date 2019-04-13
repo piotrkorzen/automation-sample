@@ -22,3 +22,4 @@ class AuthLocators:
     mobile_id               = (By.ID, "phone_mobile")
     register_xp             = (By.ID, "submitAccount")
     dropdown_state_label_xp = (By.XPATH, "//div[@id='uniform-id_state']")
+    customer_tab_xp         = (By.XPATH, "//a[@title='View my customer account']")

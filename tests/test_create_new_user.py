@@ -1,5 +1,4 @@
 from settings.webdriver import Driver
-import os
 import pytest
 from page_objects.home_page.header import Header
 from page_objects.auth_page.authPage import *
@@ -31,7 +30,7 @@ class TestAuth():
         self.driver.instance.implicitly_wait(3)
         fill_form.fill_form_checkboxes()
         fill_form.fill_form_basics(name_generator(), surname_generator(), password_generator())
-        fill_form.fill_form_address(self.postal_value, self.mobile_value)
         fill_form.fill_form_date_of_birth()
+        fill_form.fill_form_address(self.postal_value, self.mobile_value)
         fill_form.fill_form_state(self.state_value)
         fill_form.click_register()

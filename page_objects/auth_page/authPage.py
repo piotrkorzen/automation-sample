@@ -39,6 +39,7 @@ class FillAccountForm(BasePage):
     month_value = random.randint(1, 12)
     years_value = random.randint(1900, 2019)
     dropdown_state_label = apl.dropdown_state_label_xp
+    customer_tab = apl.customer_tab_xp
 
     @allure.step("Fill basic - create account form")
     def fill_form_basics(self, name, surname, password):
@@ -73,6 +74,7 @@ class FillAccountForm(BasePage):
     @allure.step("Click register - create account form")
     def click_register(self):
         self.click_clickable(self.register)
+        self.validate_element_present(self.customer_tab)
 
 
 """Class contains functions for checking is each item can be selected from form dropdown lists"""

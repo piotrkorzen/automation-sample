@@ -19,5 +19,8 @@ class TestProductCart():
     def test_add_faded_short_sleeve(self, test_setup):
         self.prod.click_product(2)
         self.pp.add_product_to_cart()
+        self.pp.exit_layer_cart()
+        self.pp.remove_from_dropdown_cart()
+        self.pp.validate_cart_is_empty()
 
         time.sleep(3)

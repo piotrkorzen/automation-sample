@@ -30,7 +30,10 @@ class BasePage(object):
     def select(self, locator, value):
         self.driver.instance.implicitly_wait(2)
         self.option = Select(self.driver.instance.find_element(*locator))
-        self.option.select_by_visible_text(str(value))
+        try:
+            self.option.select_by_visible_text(str(value))
+        except NoSuchElementException:
+            self.option.select_by_value(str(value))
 
     def validate_element_present(self, locator):
         element = WebDriverWait(self.driver.instance, 25).until(EC.visibility_of_element_located(
