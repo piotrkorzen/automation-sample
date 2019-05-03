@@ -22,6 +22,7 @@ class RightColumn(BasePage):
     def remove_from_dropdown_cart(self):
         self.hover(self.shopping_cart)
         self.click_clickable(self.remove_product_from_cart)
+        self.driver.instance.find_elements_by_tag_name('a').size()
 
     def validate_cart_is_empty(self):
         if not self.wait(self.cart_info):
