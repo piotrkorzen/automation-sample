@@ -2,7 +2,7 @@ from page_objects.basePage import BasePage
 from locators.checkboxLocators import CheckboxLocators as chl
 
 
-class Checboxes(BasePage):
+class Checkboxes(BasePage):
     categories = chl.group_categories_xp
     size = chl.group_size_xp
     compositions = chl.group_compositions_xp

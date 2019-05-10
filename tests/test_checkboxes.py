@@ -9,7 +9,7 @@ class TestCheckboxes():
     @pytest.fixture()
     def test_setup(self):
         self.driver = Driver()
-        self.checkboxes = Checboxes(self.driver)
+        self.checkboxes = Checkboxes(self.driver)
         self.driver.navigate("http://automationpractice.com/index.php?id_category=3&controller=category")
         yield
         time.sleep(3)
