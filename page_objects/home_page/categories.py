@@ -5,7 +5,6 @@ import allure
 
 
 class WomenCategories(BasePage):
-
     women_cat = hpl.women_cat_xp
     tshirt_sub = hpl.tshirts_sub_xp
     blouses_sub = hpl.blouses_sub_xp
@@ -52,8 +51,8 @@ class WomenCategories(BasePage):
     def summer_sub_click(self):
         self.click_clickable(self.summer_d_sub)
 
-class WomenCategoriesProducts(WomenCategories):
 
+class WomenCategoriesProducts(WomenCategories):
     sort_by_list = cl.sort_by_list_xp
     prices = cl.prices_xp
     products = cl.products_xp
@@ -97,8 +96,8 @@ class WomenCategoriesProducts(WomenCategories):
         self.product_list = []
         products = self.driver.instance.find_elements_by_xpath(self.products)
         for item in products:
-              product_name = item.text
-              self.product_list.append(product_name)
+            product_name = item.text
+            self.product_list.append(product_name)
         return self.product_list
 
     @allure.step("Validate sort asc")
@@ -121,5 +120,17 @@ class WomenCategoriesProducts(WomenCategories):
             print(values, sort_desc, "Descending sorting is NOT valid")
             assert False
 
+    @allure.step("Get product links")
+    def get_product_links(self):
+        links = self.driver.instance.find_elements_by_xpath(self.products)
+        self.links_list = []
+        for link in links:
+            link2 = link.get_attribute("href")
+            self.product_link = '{}'.format(link2)
+            self.links_list.append(self.product_link)
+            print(self.product_link)
 
-
+    @allure.step("Navigate to product")
+    def navigate_to_product(self):
+        for links in self.links_list:
+            self.get(links)

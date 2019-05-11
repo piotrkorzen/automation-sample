@@ -2,7 +2,7 @@ from settings.webdriver import Driver
 import pytest
 from page_objects.home_page.categories import *
 from page_objects.product_page.productImages import *
-
+import time
 
 class TestImagesCarousel():
 
