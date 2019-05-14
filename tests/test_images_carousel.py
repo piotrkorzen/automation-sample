@@ -16,5 +16,5 @@ class TestImagesCarousel():
         self.driver.instance.quit()
 
     def test_images_carousel(self, test_setup):
-        self.prod.click_product(6)
+        self.prod.click_product()
         self.image.show_all_images()

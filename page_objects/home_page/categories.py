@@ -74,7 +74,7 @@ class WomenCategoriesProducts(WomenCategories):
         self.select(self.sort_by_list, "Product Name: Z to A")
 
     @allure.step("Click product")
-    def click_product(self, value):
+    def click_product(self, value=0):
         self.product_for_click = []
         products = self.driver.instance.find_elements_by_xpath(self.products)
         for product in products:
