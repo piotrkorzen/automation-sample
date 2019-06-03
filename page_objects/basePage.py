@@ -5,7 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
-
+import pytest
 
 class BasePage(object):
 

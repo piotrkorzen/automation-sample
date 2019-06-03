@@ -10,7 +10,6 @@ class RightColumn(BasePage):
     close_layer_cart = ppl.close_layer_cart_xp
     shopping_cart = ppl.shopping_cart_xp
     remove_product_from_cart = ppl.remove_product_from_cart_xp
-    cart_info = ppl.cart_info_xp
 
     def add_product_to_cart(self):
         self.click_clickable(self.add_to_cart)
@@ -23,6 +22,18 @@ class RightColumn(BasePage):
         self.hover(self.shopping_cart)
         self.click_clickable(self.remove_product_from_cart)
 
+class ProductPageValidations(BasePage):
+
+    cart_info = ppl.cart_info_xp
+    pp_list = [ppl.main_image_box_xp,
+    ppl.name_xp,
+    ppl.description_xp,
+    ppl.social_media_xp,
+    ppl.send_to_friend_button_xp,
+    ppl.print_button_xp,
+    ppl.views_block_xp,
+    ppl.box_info_product_xp]
+
     def validate_cart_is_empty(self):
         if not self.wait(self.cart_info):
             print("Cart is empty")
@@ -30,3 +41,7 @@ class RightColumn(BasePage):
         else:
             print("Cart has not been cleared")
             assert False
+
+    def validate_main_product_page(self):
+        for item in self.pp_list:
+            self.validate_element_present(item)
