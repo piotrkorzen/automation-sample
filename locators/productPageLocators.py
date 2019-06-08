@@ -11,3 +11,14 @@ class ProductPageLocators:
     close_product_image_xp      = (By.XPATH, "//a[@class='fancybox-item fancybox-close']")
     image_layer_xp              = (By.XPATH, "//div[@class='fancybox-overlay fancybox-overlay-fixed']")
     image_box_xp                = (By.XPATH, "//img[@class='fancybox-image']")
+
+    """Product page items"""
+    main_image_box_xp           = (By.XPATH, "//img[@itemprop='image']")
+    name_xp                     = (By.XPATH, "//h1[@itemprop='name']")
+    description_xp              = (By.XPATH, "//div[@id='short_description_content']")
+    social_media_xp             = (By.XPATH, "//p[@class='socialsharing_product list-inline no-print']")
+    send_to_friend_button_xp    = (By.XPATH, "//a[@id='send_friend_button']")
+    print_button_xp             = (By.XPATH, "//li[@class='print']")
+    views_block_xp              = (By.XPATH, "//div[@id='views_block']")
+    box_info_product_xp         = (By.XPATH, "//div[@class='box-info-product']")
+

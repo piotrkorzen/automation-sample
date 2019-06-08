@@ -1,5 +1,6 @@
 from locators.homePageLocators import HomePageLocators as hpl
 from locators.categoriesLocators import CategoriesLocators as cl
+from page_objects.product_page.productPage import ProductPageValidations
 from page_objects.basePage import BasePage
 import allure
 
@@ -55,7 +56,6 @@ class WomenCategories(BasePage):
 class WomenCategoriesProducts(WomenCategories):
     sort_by_list = cl.sort_by_list_xp
     prices = cl.prices_xp
-    products = cl.products_xp
 
     @allure.step("Sort products by")
     def sort_by_all(self):
@@ -120,6 +120,10 @@ class WomenCategoriesProducts(WomenCategories):
             print(values, sort_desc, "Descending sorting is NOT valid")
             assert False
 
+
+class ProductsManagement(ProductPageValidations):
+    products = cl.products_xp
+
     @allure.step("Get product links")
     def get_product_links(self):
         links = self.driver.instance.find_elements_by_xpath(self.products)
@@ -134,3 +138,4 @@ class WomenCategoriesProducts(WomenCategories):
     def navigate_to_product(self):
         for links in self.links_list:
             self.get(links)
+            self.validate_main_product_page()
