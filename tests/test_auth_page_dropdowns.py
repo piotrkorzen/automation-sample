@@ -6,7 +6,7 @@ from data.dataGenerators import *
 import pytest
 import allure
 
-"""Test for checking whether each item in dropdown list can be selected"""
+"""Test to check whether each item in dropdown list can be selected"""
 
 
 class TestAuth():

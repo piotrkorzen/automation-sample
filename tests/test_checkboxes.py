@@ -4,7 +4,7 @@ from locators.categoriesLocators import CategoriesLocators as cl
 import pytest
 import allure
 
-"""Test for checking whether checkboxes in left bar can be selected"""
+"""Test to check whether checkboxes in left column can be selected"""
 
 
 class TestCheckboxes():

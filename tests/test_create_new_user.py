@@ -6,7 +6,7 @@ from locators.homePageLocators import HomePageLocators as hpl
 import pytest
 import allure
 
-"""Test for checking new user can be created"""
+"""Test to check if a new user can be created"""
 
 
 class TestAuth():
