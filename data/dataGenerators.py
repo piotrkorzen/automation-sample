@@ -15,7 +15,7 @@ name_list = []
 
 
 def name_generator():
-    with open("/home/piotrko/PycharmProjects/automationpractice.com/data/files/users.csv") as csv_names:
+    with open("./automationpractice.com/data/files/users.csv") as csv_names:
         csv_reader = csv.DictReader(csv_names)
         for name in csv_reader:
             name_list.append(name['First Name'])
@@ -27,7 +27,7 @@ surname_list = []
 
 
 def surname_generator():
-    with open("/home/piotrko/PycharmProjects/automationpractice.com/data/files/users.csv") as csv_names:
+    with open("./automationpractice.com/data/files/users.csv") as csv_names:
         csv_reader = csv.DictReader(csv_names)
         for surname in csv_reader:
             surname_list.append(surname['Last Name'])

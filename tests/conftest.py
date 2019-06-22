@@ -8,7 +8,6 @@ def pytest_addoption(parser):
     parser.addoption('--b', action='store', default='CH', help='browser')
 
 
-
 def pytest_configure(config):
     os.environ['u'] = config.getoption('u')
     os.environ['lg'] = config.getoption('lg')
