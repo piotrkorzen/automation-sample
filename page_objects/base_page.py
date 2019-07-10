@@ -4,9 +4,11 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 from selenium.webdriver.support import expected_conditions as EC
+import logging
 
 
 class BasePage(object):
+    logging.basicConfig(level=logging.INFO)
 
     def __init__(self, driver):
         self.driver = driver
@@ -23,14 +25,14 @@ class BasePage(object):
     def get(self, url):
         return self.driver.navigate(url)
 
-    # function for click on single element
     def click(self, value):
+        """function for click on single element"""
         return WebDriverWait(self.driver.instance, timeout=10).until(EC.element_to_be_clickable(
             (self.locator(value)))).click()
 
-    # function for click on element from list of elements where we can choose which element is interesting for us
-    # e.g. we can choose particular product from product scope or iterate through all products
     def click_element(self, value, element_number=0):
+        """function for click on element from list of elements where we can choose which element is interesting for us
+           e.g. we can choose particular product from product scope or iterate through all products"""
         self.elements_list = []
         elements = WebDriverWait(self.driver.instance, 10).until(
             lambda driver: self.driver.instance.find_elements(*self.locator(value)))
@@ -38,12 +40,11 @@ class BasePage(object):
             self.elements_list.append(element)
         self.elements_list[element_number].click()
 
-    # function for setting input values, checkboxes, radio buttons and dropdown lists
-    def set(self, value, send_value):
-
+    def set(self, value, *send_value):
+        """function for setting input values, checkboxes, radio buttons and dropdown lists"""
         if "input" in value:
-            # for plain text areas
-            if send_value != None:
+            # for plain text areas"""
+            if send_value is not None:
                 condition = EC.visibility_of_element_located(self.locator(value))
                 element = WebDriverWait(self.driver.instance, timeout=10).until(condition)
                 element.clear(), element.send_keys(send_value)
@@ -62,7 +63,6 @@ class BasePage(object):
                     self.driver.instance.execute_script("arguments[0].click();", self.checkbox)
         # for dropdown lists
         if "select" in value:
-            self.driver.instance.implicitly_wait(2)
             self.option = Select(self.driver.instance.find_element(*self.locator(value)))
             try:
                 self.option.select_by_visible_text(send_value)
@@ -105,8 +105,8 @@ class BasePage(object):
         hover = ActionChains(self.driver.instance).move_to_element(self.all_elements[element])
         hover.perform()
 
-    # function returning items from dropdowns lists
     def get_items_from_dropdown(self, value):
+        """function returning items from dropdowns lists"""
         self.items = []
         element = WebDriverWait(self.driver.instance, 10).until(
             lambda driver: self.driver.instance.find_element(*self.locator(value)))
@@ -120,8 +120,8 @@ class BasePage(object):
         print("The number of items on the list is: ", self.items_counter)
         return self.items
 
-    # function for validate element from dropdown list is selected correctly
     def validate_item_is_selected(self, value, send_value):
+        """function for validate element from dropdown list is selected correctly"""
         self.set(value, send_value)
         if self.option.first_selected_option.get_attribute('text') == send_value:
             assert True

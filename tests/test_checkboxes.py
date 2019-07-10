@@ -1,6 +1,6 @@
 from settings.webdriver import Driver
-from page_objects.basePage import BasePage
-from locators.categoriesLocators import CategoriesLocators as cl
+from page_objects.base_page import BasePage
+from locators.categories_locators import CategoriesLocators
 import pytest
 import allure
 
@@ -8,7 +8,6 @@ import allure
 
 
 class TestCheckboxes():
-    checkboxes = cl.checkboxes
 
     @pytest.fixture()
     def test_setup(self):
@@ -20,7 +19,7 @@ class TestCheckboxes():
 
     @allure.step("All checkboxes on left side bar are clickable")
     def test_checkboxes(self, test_setup):
-        all_checkboxes = self.driver.instance.find_elements_by_xpath(self.checkboxes)
+        all_checkboxes = self.driver.instance.find_elements_by_xpath(CategoriesLocators.CHECKBOXES)
         for checkbox in all_checkboxes:
             checkbox.click()
             assert checkbox.is_selected()

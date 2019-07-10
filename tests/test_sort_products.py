@@ -1,13 +1,10 @@
 from settings.webdriver import Driver
-from locators.categoriesLocators import CategoriesLocators as cl
+from locators.categories_locators import CategoriesLocators
 from page_objects.home_page.categories import Sort
 import pytest
 
 
 class TestSortProducts():
-    sort_select = cl.sort_select
-    prices = cl.prices
-    product_name = cl.products_name
 
     @pytest.fixture()
     def test_setup(self):
@@ -18,21 +15,17 @@ class TestSortProducts():
         self.driver.instance.quit()
 
     def test_sort_by_price_asc(self, test_setup):
-        self.s.set(self.sort_select, "Price: Lowest first")
-        self.driver.instance.implicitly_wait(3)
-        self.s.validate_sort_asc(self.s.get_product_price(self.prices))
+        self.s.set(CategoriesLocators.SORT_SELECT, "Price: Lowest first")
+        self.s.validate_sort_asc(self.s.get_product_price(CategoriesLocators.PRICES))
 
     def test_sort_by_price_desc(self, test_setup):
-        self.s.set(self.sort_select, "Price: Highest first")
-        self.driver.instance.implicitly_wait(3)
-        self.s.validate_sort_desc(self.s.get_product_price(self.prices))
+        self.s.set(CategoriesLocators.SORT_SELECT, "Price: Highest first")
+        self.s.validate_sort_desc(self.s.get_product_price(CategoriesLocators.PRICES))
 
     def test_sort_by_a_z(self, test_setup):
-        self.s.set(self.sort_select, "Product Name: A to Z")
-        self.driver.instance.implicitly_wait(3)
-        self.s.validate_sort_asc(self.s.get_product_names(self.product_name))
+        self.s.set(CategoriesLocators.SORT_SELECT, "Product Name: A to Z")
+        self.s.validate_sort_asc(self.s.get_product_names(CategoriesLocators.PRODUCTS_NAME))
 
     def test_sort_by_z_a(self, test_setup):
-        self.s.set(self.sort_select, "Product Name: Z to A")
-        self.driver.instance.implicitly_wait(3)
-        self.s.validate_sort_desc(self.s.get_product_names(self.product_name))
+        self.s.set(CategoriesLocators.SORT_SELECT, "Product Name: Z to A")
+        self.s.validate_sort_desc(self.s.get_product_names(CategoriesLocators.PRODUCTS_NAME))

@@ -1,4 +1,4 @@
-from page_objects.basePage import BasePage
+from page_objects.base_page import BasePage
 import allure
 
 
