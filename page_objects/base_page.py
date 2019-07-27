@@ -2,13 +2,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, \
+    ElementClickInterceptedException, InvalidElementStateException
 from selenium.webdriver.support import expected_conditions as EC
+import allure
 import logging
 
 
 class BasePage(object):
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO,
+                        format="%(levelname)s:%(message)s")
 
     def __init__(self, driver):
         self.driver = driver
@@ -25,10 +28,15 @@ class BasePage(object):
     def get(self, url):
         return self.driver.navigate(url)
 
-    def click(self, value):
+    @allure.step("The element" + str({0}) + "has been clicked")
+    def click(self, value, wait=15):
         """function for click on single element"""
-        return WebDriverWait(self.driver.instance, timeout=10).until(EC.element_to_be_clickable(
-            (self.locator(value)))).click()
+        try:
+            return WebDriverWait(self.driver.instance, wait).until(EC.element_to_be_clickable(
+                (self.locator(value)))).click()
+        except ElementClickInterceptedException:
+            return WebDriverWait(self.driver.instance, wait).until(EC.visibility_of_element_located(
+                (self.locator(value)))).click()
 
     def click_element(self, value, element_number=0):
         """function for click on element from list of elements where we can choose which element is interesting for us
@@ -40,9 +48,10 @@ class BasePage(object):
             self.elements_list.append(element)
         self.elements_list[element_number].click()
 
-    def set(self, value, *send_value):
+    def set(self, value, send_value):
         """function for setting input values, checkboxes, radio buttons and dropdown lists"""
-        if "input" in value:
+        inputs = ["input", "textarea"]
+        if any(mark in value for mark in inputs):
             # for plain text areas"""
             if send_value is not None:
                 condition = EC.visibility_of_element_located(self.locator(value))
@@ -61,6 +70,8 @@ class BasePage(object):
                 # for hidden inputs in case of checkboxes and radio buttons
                 except ElementNotVisibleException:
                     self.driver.instance.execute_script("arguments[0].click();", self.checkbox)
+                except InvalidElementStateException:
+                    self.driver.instance.execute_script("arguments[0].click();", self.checkbox)
         # for dropdown lists
         if "select" in value:
             self.option = Select(self.driver.instance.find_element(*self.locator(value)))
@@ -70,7 +81,7 @@ class BasePage(object):
                 try:
                     self.option.select_by_value(send_value)
                 except NoSuchElementException:
-                    self.option.select_by_index(int(send_value))
+                    self.option.select_by_index(send_value)
 
     def validate_element_present(self, value):
         condition = EC.visibility_of_element_located(self.locator(value))
@@ -116,8 +127,8 @@ class BasePage(object):
             self.items.append(self.item)
         del self.items[0]
         self.items_counter = len(self.items)
-        print(*self.items, sep='\n')
-        print("The number of items on the list is: ", self.items_counter)
+        logging.info("Items:\n{}".format("\n".join(map(str, self.items))))
+        logging.info("The number of items on the list is: {}".format(self.items_counter))
         return self.items
 
     def validate_item_is_selected(self, value, send_value):
@@ -126,7 +137,7 @@ class BasePage(object):
         if self.option.first_selected_option.get_attribute('text') == send_value:
             assert True
         else:
-            print("Item ", value, "has not been selected")
+            logging.error("Item {} has not been selected".format(value))
             raise AssertionError("Items have not been selected")
 
     def slider(self, value, *offset):

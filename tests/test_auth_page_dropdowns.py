@@ -23,22 +23,18 @@ class TestAuth():
         yield
         self.driver.instance.quit()
 
-    @allure.step("Each item from days dropdown can be selected")
     def test_days_dropdown(self, test_setup):
         self.bp.get_items_from_dropdown(AuthLocators.DAYS)
 
         for item in self.bp.items:
             self.bp.validate_item_is_selected(AuthLocators.DAYS, item)
 
-    @allure.step("Each item from month dropdown can be selected")
     def test_month_dropdown(self, test_setup):
         self.bp.get_items_from_dropdown(AuthLocators.MONTHS)
 
         for item in self.bp.items:
             self.bp.validate_item_is_selected(AuthLocators.MONTHS, item)
 
-    #
-    @allure.step("Each item from year dropdown can be selected")
     def test_year_dropdown(self, test_setup):
         self.bp.get_items_from_dropdown(AuthLocators.YEARS)
 

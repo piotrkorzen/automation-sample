@@ -1,8 +1,11 @@
-from page_objects.base_page import BasePage
 import allure
+import logging
+from page_objects.base_page import BasePage
 
 
 class Sort(BasePage):
+    logging.basicConfig(level=logging.INFO,
+                        format="%(levelname)s:%(message)s")
 
     @allure.step("Get product price")
     def get_product_price(self, value):
@@ -27,18 +30,18 @@ class Sort(BasePage):
     def validate_sort_asc(self, values):
         sort_asc = sorted(values)
         if sort_asc == values:
-            print(values, sort_asc, "Ascending sorting is valid")
+            logging.info("{}\n{} - Ascending sorting is valid".format(values, sort_asc))
             assert True
         else:
-            print(values, sort_asc, "Ascending sorting is NOT valid")
+            logging.error("{}\n{} - Ascending sorting is NOT valid".format(values, sort_asc))
             assert False
 
     @allure.step("Validate sort desc")
     def validate_sort_desc(self, values):
         sort_desc = sorted(values, reverse=True)
         if sort_desc == values:
-            print(values, sort_desc, "Descending sorting is valid")
+            logging.info("{}\n{} - Descending sorting is valid".format(values, sort_desc))
             assert True
         else:
-            print(values, sort_desc, "Descending sorting is NOT valid")
+            logging.error("{}\n{} - Descending sorting is NOT valid".format(values, sort_desc))
             assert False
