@@ -1,5 +1,8 @@
 import os
-
+import pytest
+import allure
+from allure_commons.types import AttachmentType
+from datetime import datetime
 
 def pytest_addoption(parser):
     parser.addoption('--URL', action='store', default='', help='url environment address')
@@ -13,3 +16,10 @@ def pytest_configure(config):
     os.environ['LOGIN'] = config.getoption('LOGIN')
     os.environ['PASSWORD'] = config.getoption('PASSWORD')
     os.environ['BROWSER'] = config.getoption('BROWSER')
+
+def pytest_exception_interact(node, call, report):
+    driver = node.instance.driver
+    # ...
+    now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    allure.attach(driver.instance.get_screenshot_as_png(), name="{}".format(now),
+                  attachment_type=AttachmentType.PNG)
