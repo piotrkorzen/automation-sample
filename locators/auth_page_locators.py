@@ -6,7 +6,7 @@ class AuthLocators:
     CUST_LNAME = "//input[@id='customer_lastname']"
     PASSWORD = "//input[@id='passwd']"
     DAYS = "//select[@id='days']"
-    MONTHS = "//select[@id='months']"
+    MONTHS = "//select[@id='monthss']"
     YEARS = "//select[@id='years']"
     STATE = "//div[@id='uniform-id_state']//select[@id='id_state']"
     NEWSLETTER = "//input[@id='newsletter']"
