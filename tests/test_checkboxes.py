@@ -1,8 +1,8 @@
+import pytest
+import allure
 from settings.webdriver import Driver
 from page_objects.base_page import BasePage
 from locators.categories_locators import CategoriesLocators
-import pytest
-import allure
 
 """Test to check whether checkboxes in left column can be selected"""
 

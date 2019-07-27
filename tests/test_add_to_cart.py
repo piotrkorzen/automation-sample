@@ -1,8 +1,8 @@
+import pytest
+import allure
 from settings.webdriver import Driver
 from page_objects.base_page import BasePage
 from locators.home_page_locators import HomePageLocators
-import pytest
-import allure
 
 
 class TestProductCart():

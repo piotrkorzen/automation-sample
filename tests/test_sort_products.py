@@ -1,7 +1,7 @@
+import pytest
 from settings.webdriver import Driver
 from locators.categories_locators import CategoriesLocators
 from page_objects.home_page.categories import Sort
-import pytest
 
 
 class TestSortProducts():

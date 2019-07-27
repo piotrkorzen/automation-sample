@@ -1,5 +1,4 @@
 import os
-import pytest
 import allure
 from allure_commons.types import AttachmentType
 from datetime import datetime
@@ -20,6 +19,7 @@ def pytest_configure(config):
 
 
 def pytest_exception_interact(node, call, report):
+    """function for taking screenshot after failure and attach to allure report"""
     driver = node.instance.driver
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     allure.attach(driver.instance.get_screenshot_as_png(),

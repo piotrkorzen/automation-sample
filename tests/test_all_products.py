@@ -1,9 +1,9 @@
+import pytest
+import allure
 from settings.webdriver import Driver
 from page_objects.base_page import BasePage
 from locators.home_page_locators import HomePageLocators
 from locators.product_page_locators import ProductPageLocators
-import pytest
-import allure
 
 
 class TestImagesCarousel():

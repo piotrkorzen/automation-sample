@@ -1,10 +1,10 @@
+from faker import Faker
+import random
+import allure
 from settings.webdriver import Driver
 from page_objects.base_page import BasePage
 from locators.auth_page_locators import AuthLocators
 from locators.home_page_locators import HomePageLocators
-from faker import Faker
-import random
-import allure
 
 """Test to check if a new user can be created"""
 
@@ -38,7 +38,6 @@ class TestAuth():
         self.driver = Driver()
         self.bp = BasePage(self.driver)
 
-
     @allure.step("New user can be created")
     def test_create_account(self):
         self.driver.navigate("http://automationpractice.com/index.php")
@@ -46,7 +45,6 @@ class TestAuth():
         self.bp.set(AuthLocators.EMAIL_CREATE, self.FAKE.email())
         self.bp.click(AuthLocators.SUBMIT_CREATE)
         self.bp.wait(AuthLocators.CHECKBOX_GENDER_NAME)
-
 
         for key, value in self.SET_DICT.items():
             self.bp.set(key, value)
