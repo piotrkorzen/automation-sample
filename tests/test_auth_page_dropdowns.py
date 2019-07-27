@@ -23,11 +23,11 @@ class TestAuth():
         yield
         self.driver.instance.quit()
 
-    def test_days_dropdown(self, test_setup):
-        self.bp.get_items_from_dropdown(AuthLocators.DAYS)
-
-        for item in self.bp.items:
-            self.bp.validate_item_is_selected(AuthLocators.DAYS, item)
+    # def test_days_dropdown(self, test_setup):
+    #     self.bp.get_items_from_dropdown(AuthLocators.DAYS)
+    #
+    #     for item in self.bp.items:
+    #         self.bp.validate_item_is_selected(AuthLocators.DAYS, item)
 
     def test_month_dropdown(self, test_setup):
         self.bp.get_items_from_dropdown(AuthLocators.MONTHS)
@@ -35,15 +35,14 @@ class TestAuth():
         for item in self.bp.items:
             self.bp.validate_item_is_selected(AuthLocators.MONTHS, item)
 
-    def test_year_dropdown(self, test_setup):
-        self.bp.get_items_from_dropdown(AuthLocators.YEARS)
-
-        for item in self.bp.items:
-            self.bp.validate_item_is_selected(AuthLocators.YEARS, item)
-
-    @allure.step("Each item from state dropdown can be selected")
-    def test_state_dropdown(self, test_setup):
-        self.bp.get_items_from_dropdown(AuthLocators.STATE)
-
-        for item in self.bp.items:
-            self.bp.validate_item_is_selected(AuthLocators.STATE, item)
+    # def test_year_dropdown(self, test_setup):
+    #     self.bp.get_items_from_dropdown(AuthLocators.YEARS)
+    #
+    #     for item in self.bp.items:
+    #         self.bp.validate_item_is_selected(AuthLocators.YEARS, item)
+    #
+    # def test_state_dropdown(self, test_setup):
+    #     self.bp.get_items_from_dropdown(AuthLocators.STATE)
+    #
+    #     for item in self.bp.items:
+    #         self.bp.validate_item_is_selected(AuthLocators.STATE, item)
