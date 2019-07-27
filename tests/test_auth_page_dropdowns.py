@@ -23,10 +23,6 @@ class TestAuth():
         self.bp.set(AuthLocators.EMAIL_CREATE, fake.email())
         self.bp.click(AuthLocators.SUBMIT_CREATE)
         yield
-        # now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        # allure.attach(self.driver.instance.get_screenshot_as_png(), name="{}".format(now),
-        #               attachment_type=AttachmentType.PNG)
-
         self.driver.instance.quit()
 
     # def test_days_dropdown(self, test_setup):
