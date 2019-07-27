@@ -3,3 +3,4 @@ pytest==4.6.2
 allure-pytest==2.6.5
 pytest-parallel==0.0.9
 junitxml==0.7
+Faker==2.0.0
