@@ -8,7 +8,6 @@ import allure
 from datetime import datetime
 from allure_commons.types import AttachmentType
 
-
 """Test to check whether each item in dropdown list can be selected"""
 
 
@@ -25,7 +24,7 @@ class TestAuth():
         self.bp.click(AuthLocators.SUBMIT_CREATE)
         yield
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        allure.attach(self.driver.instance.save_screenshot('./tests/screenshots/{}.png'.format(now)),
+        allure.attach(self.driver.instance.get_screenshot_as_png('./tests/screenshots/{}.png'.format(now)),
                       name="Screenshot",
                       attachment_type=AttachmentType.PNG)
 
