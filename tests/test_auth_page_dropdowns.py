@@ -5,6 +5,7 @@ from locators.auth_page_locators import AuthLocators
 from faker import Faker
 import pytest
 import allure
+from datetime import datetime
 
 """Test to check whether each item in dropdown list can be selected"""
 
@@ -21,6 +22,9 @@ class TestAuth():
         self.bp.set(AuthLocators.EMAIL_CREATE, fake.email())
         self.bp.click(AuthLocators.SUBMIT_CREATE)
         yield
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+        allure.attach('screenshot', self.driver.instance.save_screenshot('./tests/screenshots/{}.png'.format(now)))
+
         self.driver.instance.quit()
 
     # def test_days_dropdown(self, test_setup):
