@@ -12,7 +12,7 @@ class Driver:
             chrome_options.add_argument('--disable-dev-shm-usage')
             chrome_options.add_argument('window-size=1600,1200')
             self.instance = webdriver.Chrome(options=chrome_options,
-                                             executable_path='/home/piotrko/PycharmProjects/automationpractice.com/chromedriver.exe')
+                                             executable_path='./../chromedriver.exe')
         elif os.getenv('BROWSER') == "FF":
             ff_options = webdriver.FirefoxOptions()
             # ff_options.headless = True
