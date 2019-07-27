@@ -24,9 +24,8 @@ class TestAuth():
         self.bp.click(AuthLocators.SUBMIT_CREATE)
         yield
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        allure.attach(self.driver.instance.get_screenshot_as_png('./tests/screenshots/{}.png'.format(now)),
-                      name="Screenshot",
-                      attachment_type=AttachmentType.PNG)
+        allure.attach(self.driver.instance.get_screenshot_as_png(name="{}".format(now),
+                      attachment_type=AttachmentType.PNG))
 
         self.driver.instance.quit()
 
