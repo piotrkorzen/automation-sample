@@ -22,7 +22,6 @@ class TestImagesCarousel():
         yield
         self.driver.instance.quit()
 
-    @allure.step("Check whether large view of products pictures is possible")
     def test_images_carousel(self, test_setup):
         """navigate to product one by one"""
         for href in self.product_links:
@@ -34,7 +33,6 @@ class TestImagesCarousel():
                 self.bp.click(ProductPageLocators.CLOSE_PRODUCT_IMAGE)
                 self.bp.validate_element_not_present(ProductPageLocators.IMAGE_LAYER)
 
-    @allure.step("Check whether socials buttons are visible")
     def test_socials_are_visible(self, test_setup):
         """navigate to product one by one"""
         for href in self.product_links:

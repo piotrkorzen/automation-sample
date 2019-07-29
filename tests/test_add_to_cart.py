@@ -15,13 +15,11 @@ class TestProductCart():
         yield
         self.driver.instance.quit()
 
-    @allure.step("Add product to cart from home page")
     def test_add_to_cart_from_home_page(self, test_setup):
         self.bp.hover(HomePageLocators.ALL_PRODUCTS)
         self.bp.click_element(HomePageLocators.ADD_TO_CART)
         self.bp.validate_element_present(HomePageLocators.ICON_OK)
 
-    @allure.step("Remove product from cart")
     def test_remove_from_cart(self, test_setup):
         self.test_add_to_cart_from_home_page(test_setup)
         self.bp.click(HomePageLocators.CLOSE_PRODUCT_LAYER)

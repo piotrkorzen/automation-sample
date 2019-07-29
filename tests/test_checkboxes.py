@@ -17,7 +17,6 @@ class TestCheckboxes():
         yield
         self.bp.driver.instance.quit()
 
-    @allure.step("All checkboxes on left side bar are clickable")
     def test_checkboxes(self, test_setup):
         all_checkboxes = self.driver.instance.find_elements_by_xpath(CategoriesLocators.CHECKBOXES)
         for checkbox in all_checkboxes:

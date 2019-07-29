@@ -38,7 +38,6 @@ class TestAuth():
         self.driver = Driver()
         self.bp = BasePage(self.driver)
 
-    @allure.step("New user can be created")
     def test_create_account(self):
         self.driver.navigate("http://automationpractice.com/index.php")
         self.bp.click(HomePageLocators.SIGN_IN)
