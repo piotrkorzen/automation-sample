@@ -52,4 +52,4 @@ class TestAuth():
         self.bp.validate_element_present(AuthLocators.CUSTOMER_TAB)
 
     def teardown(self):
-        self.bp.driver.instance.quit()
+        self.driver.teardown()

@@ -1,5 +1,3 @@
-import pytest
-import allure
 from settings.webdriver import Driver
 from page_objects.base_page import BasePage
 from locators.home_page_locators import HomePageLocators
@@ -8,8 +6,7 @@ from locators.product_page_locators import ProductPageLocators
 
 class TestImagesCarousel():
 
-    @pytest.fixture()
-    def test_setup(self):
+    def setup(self):
         self.driver = Driver()
         self.bp = BasePage(self.driver)
         self.driver.navigate("http://automationpractice.com/index.php?id_category=3&controller=category")
@@ -19,10 +16,12 @@ class TestImagesCarousel():
         for link in products:
             full_link = link.get_attribute('href')
             self.product_links.append(full_link)
-        yield
-        self.driver.instance.quit()
 
+<<<<<<< HEAD
     def test_images_carousel(self, test_setup):
+=======
+    def test_images_carousel(self):
+>>>>>>> test/20190729_setup_teardown
         """navigate to product one by one"""
         for href in self.product_links:
             self.driver.navigate(href)
@@ -33,7 +32,11 @@ class TestImagesCarousel():
                 self.bp.click(ProductPageLocators.CLOSE_PRODUCT_IMAGE)
                 self.bp.validate_element_not_present(ProductPageLocators.IMAGE_LAYER)
 
+<<<<<<< HEAD
     def test_socials_are_visible(self, test_setup):
+=======
+    def test_socials_are_visible(self):
+>>>>>>> test/20190729_setup_teardown
         """navigate to product one by one"""
         for href in self.product_links:
             self.driver.navigate(href)
@@ -41,3 +44,6 @@ class TestImagesCarousel():
             self.bp.validate_element_present(ProductPageLocators.FACEBOOK)
             self.bp.validate_element_present(ProductPageLocators.GOOGLE_PLUS)
             self.bp.validate_element_present(ProductPageLocators.PINTEREST)
+
+    def teardown(self):
+        self.driver.teardown()

@@ -39,7 +39,7 @@ class BasePage(object):
             return WebDriverWait(self.driver.instance, wait).until(EC.visibility_of_element_located(
                 (self.locator(value)))).click()
 
-    @allure.step("The element " + str({1}) + " with position " + str({2}) + " has been clicked")
+    @allure.step("The element " + str({1}) + " has been clicked")
     def click_element(self, value, element_number=0):
         """function for click on element from list of elements where we can choose which element is interesting for us
            e.g. we can choose particular product from product scope or iterate through all products"""
@@ -115,10 +115,10 @@ class BasePage(object):
         WebDriverWait(self.driver.instance, timeout=10).until(EC.visibility_of_element_located(
             (self.locator(value))))
 
-    @allure.step("Mouse is on " + str({1}) + " and element" + str({2}))
+    @allure.step("Mouse is on " + str({1}))
     def hover(self, value, element=0):
         self.all_elements = []
-        products = WebDriverWait(self.driver.instance, timeout=10).until(
+        products = WebDriverWait(self.driver.instance, 15).until(
             lambda driver: self.driver.instance.find_elements(*self.locator(value)))
         for product in products:
             self.all_elements.append(product)

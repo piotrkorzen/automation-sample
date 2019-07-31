@@ -1,23 +1,22 @@
 from selenium import webdriver
 import os
+from pyvirtualdisplay import Display
+
 
 class Driver:
+    VISIBLE = 1 # 0 - do not run GUI mode, 1 - run GUI mode
 
     def __init__(self):
+        """PyVirtualDisplay library for run tests without GUI mode e.g. on Jenkins.
+        On machine must be installed xvfb module or Xephyr - sudo apt-get install xvfb xserver-xephyr"""
+        self.display = Display(visible=self.VISIBLE, size=(2560, 2560))
+        self.display.start()
 
         if os.getenv('BROWSER') == "CH":
-            chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument('--headless')
-            chrome_options.add_argument('--no-sandbox')
-            chrome_options.add_argument('--disable-dev-shm-usage')
-            chrome_options.add_argument('window-size=1600,1200')
-            self.instance = webdriver.Chrome(options=chrome_options,
-                                             executable_path='./automationpractice.com/chromedriver.exe')
+            self.instance = webdriver.Chrome(
+                executable_path='/home/piotrko/PycharmProjects/automationpractice.com/chromedriver.exe')
         elif os.getenv('BROWSER') == "FF":
-            ff_options = webdriver.FirefoxOptions()
-            # ff_options.headless = True
-            self.instance = webdriver.Firefox(options=ff_options,
-                                              executable_path='./automationpractice.com/geckodriver.exe')
+            self.instance = webdriver.Firefox(executable_path='./automationpractice.com/geckodriver.exe')
         elif os.getenv('BROWSER') == "OP":
             self.instance = webdriver.Opera(
                 executable_path='./automationpractice.com/operadriver.exe')
@@ -30,3 +29,7 @@ class Driver:
             self.instance.get(url)
         else:
             raise TypeError("URL must be a string.")
+
+    def teardown(self):
+        self.instance.quit()
+        self.display.stop()
