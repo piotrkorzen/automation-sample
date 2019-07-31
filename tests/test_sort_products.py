@@ -27,4 +27,4 @@ class TestSortProducts():
         self.s.validate_sort_desc(self.s.get_product_names(CategoriesLocators.PRODUCTS_NAME))
 
     def teardown(self):
-        self.driver.instance.quit()
+        self.driver.teardown()

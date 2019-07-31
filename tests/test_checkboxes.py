@@ -19,4 +19,4 @@ class TestCheckboxes():
             assert checkbox.is_selected()
 
     def teardown(self):
-        self.bp.driver.instance.quit()
+        self.driver.teardown()

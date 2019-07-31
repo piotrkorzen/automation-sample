@@ -17,7 +17,6 @@ class TestAuth():
         self.bp.click(HomePageLocators.SIGN_IN)
         self.bp.set(AuthLocators.EMAIL_CREATE, fake.email())
         self.bp.click(AuthLocators.SUBMIT_CREATE)
-        self.driver.instance.quit()
 
     def test_days_dropdown(self):
         self.bp.get_items_from_dropdown(AuthLocators.DAYS)
@@ -44,4 +43,4 @@ class TestAuth():
             self.bp.validate_item_is_selected(AuthLocators.STATE, item)
 
     def teardown(self):
-        self.driver.instance.quit()
+        self.driver.teardown()

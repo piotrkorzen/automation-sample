@@ -23,4 +23,4 @@ class TestProductCart():
         self.bp.validate_element_present(HomePageLocators.EMPTY_CART_INFO)
 
     def teardown(self):
-        self.driver.instance.quit()
+        self.driver.teardown()

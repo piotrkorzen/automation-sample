@@ -38,4 +38,4 @@ class TestImagesCarousel():
             self.bp.validate_element_present(ProductPageLocators.PINTEREST)
 
     def teardown(self):
-        self.driver.instance.quit()
+        self.driver.teardown()
