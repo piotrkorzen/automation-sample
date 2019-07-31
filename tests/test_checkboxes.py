@@ -12,13 +12,8 @@ class TestCheckboxes():
         self.bp = BasePage(self.driver)
         self.bp.driver.navigate("http://automationpractice.com/index.php?id_category=3&controller=category")
 
-<<<<<<< HEAD
-    def test_checkboxes(self, test_setup):
-        all_checkboxes = self.driver.instance.find_elements_by_xpath(CategoriesLocators.CHECKBOXES)
-=======
     def test_checkboxes(self):
         all_checkboxes = self.driver.instance.find_elements(*self.bp.locator(CategoriesLocators.CHECKBOXES))
->>>>>>> test/20190729_setup_teardown
         for checkbox in all_checkboxes:
             checkbox.click()
             assert checkbox.is_selected()

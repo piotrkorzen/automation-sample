@@ -17,11 +17,7 @@ class TestImagesCarousel():
             full_link = link.get_attribute('href')
             self.product_links.append(full_link)
 
-<<<<<<< HEAD
-    def test_images_carousel(self, test_setup):
-=======
     def test_images_carousel(self):
->>>>>>> test/20190729_setup_teardown
         """navigate to product one by one"""
         for href in self.product_links:
             self.driver.navigate(href)
@@ -32,11 +28,7 @@ class TestImagesCarousel():
                 self.bp.click(ProductPageLocators.CLOSE_PRODUCT_IMAGE)
                 self.bp.validate_element_not_present(ProductPageLocators.IMAGE_LAYER)
 
-<<<<<<< HEAD
-    def test_socials_are_visible(self, test_setup):
-=======
     def test_socials_are_visible(self):
->>>>>>> test/20190729_setup_teardown
         """navigate to product one by one"""
         for href in self.product_links:
             self.driver.navigate(href)
