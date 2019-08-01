@@ -15,7 +15,7 @@ class Driver:
         orig = os.environ["DISPLAY"]
         if os.getenv('BROWSER') == "CH":
             self.instance = webdriver.Chrome(
-                executable_path='/home/piotrko/PycharmProjects/automationpractice.com/chromedriver.exe')
+                executable_path='./automationpractice.com/chromedriver.exe')
         elif os.getenv('BROWSER') == "FF":
             self.instance = webdriver.Firefox(executable_path='./automationpractice.com/geckodriver.exe')
         elif os.getenv('BROWSER') == "OP":
