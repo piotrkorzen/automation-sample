@@ -4,7 +4,7 @@ from pyvirtualdisplay import Display
 
 
 class Driver:
-    VISIBLE = 1  # 0 - do not run GUI mode, 1 - run GUI mode
+    VISIBLE = 0  # 0 - do not run GUI mode, 1 - run GUI mode
     ORIG = os.environ["DISPLAY"]
 
     def __init__(self):
