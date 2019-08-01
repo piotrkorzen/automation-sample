@@ -5,18 +5,17 @@ from pyvirtualdisplay import Display
 
 class Driver:
     VISIBLE = 0  # 0 - do not run GUI mode, 1 - run GUI mode
-    ORIG = os.environ["DISPLAY"]
 
     def __init__(self):
         """PyVirtualDisplay library for run tests without GUI mode e.g. on Jenkins.
         On machine must be installed xvfb module or Xephyr - sudo apt-get install xvfb xserver-xephyr"""
         self.display = Display(visible=self.VISIBLE, size=(2560, 2560))
         self.display.start()
-        # reset of DISPLAY instance - it is neccesery for parallel testing
-        os.environ["DISPLAY"] = self.ORIG
+        # new DISPLAY instance - it is necessary for parallel testing
+        orig = os.environ["DISPLAY"]
         if os.getenv('BROWSER') == "CH":
             self.instance = webdriver.Chrome(
-                executable_path='./automationpractice.com/chromedriver.exe')
+                executable_path='/home/piotrko/PycharmProjects/automationpractice.com/chromedriver.exe')
         elif os.getenv('BROWSER') == "FF":
             self.instance = webdriver.Firefox(executable_path='./automationpractice.com/geckodriver.exe')
         elif os.getenv('BROWSER') == "OP":
