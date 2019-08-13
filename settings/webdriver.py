@@ -15,12 +15,12 @@ class Driver:
         orig = os.environ["DISPLAY"]
         if os.getenv('BROWSER') == "CH":
             self.instance = webdriver.Chrome(
-                executable_path='./automationpractice.com/chromedriver.exe')
+                executable_path='./chromedriver.exe')
         elif os.getenv('BROWSER') == "FF":
-            self.instance = webdriver.Firefox(executable_path='./automationpractice.com/geckodriver.exe')
+            self.instance = webdriver.Firefox(executable_path='./geckodriver.exe')
         elif os.getenv('BROWSER') == "OP":
             self.instance = webdriver.Opera(
-                executable_path='./automationpractice.com/operadriver.exe')
+                executable_path='./operadriver.exe')
         else:
             print("Please mark a browser")
 
