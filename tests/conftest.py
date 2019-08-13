@@ -18,10 +18,10 @@ def pytest_configure(config):
     os.environ['BROWSER'] = config.getoption('BROWSER')
 
 
-def pytest_exception_interact(node, call, report):
-    """function for taking screenshot after failure and attach to allure report"""
-    driver = node.instance.driver
-    now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    allure.attach(driver.instance.get_screenshot_as_png(),
-                  name="{}".format(now),
-                  attachment_type=AttachmentType.PNG)
+# def pytest_exception_interact(node, call, report):
+#     """function for taking screenshot after failure and attach to allure report"""
+#     driver = node.instance.driver
+#     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+#     allure.attach(driver.instance.get_screenshot_as_png(),
+#                   name="{}".format(now),
+#                   attachment_type=AttachmentType.PNG)
