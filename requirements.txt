@@ -1,4 +1,4 @@
-selenium==3.141.0
+selenium==4.0.0a1
 pytest==4.6.2
 allure-pytest==2.6.5
 pytest-parallel==0.0.9
