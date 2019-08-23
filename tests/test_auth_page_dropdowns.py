@@ -30,11 +30,11 @@ class TestAuth():
         for item in self.bp.items:
             self.bp.validate_item_is_selected(AuthLocators.MONTHS, item)
 
-    def test_year_dropdown(self):
-        self.bp.get_items_from_dropdown(AuthLocators.YEARS)
-
-        for item in self.bp.items:
-            self.bp.validate_item_is_selected(AuthLocators.YEARS, item)
+    # def test_year_dropdown(self):
+    #     self.bp.get_items_from_dropdown(AuthLocators.YEARS)
+    #
+    #     for item in self.bp.items:
+    #         self.bp.validate_item_is_selected(AuthLocators.YEARS, item)
 
     def test_state_dropdown(self):
         self.bp.get_items_from_dropdown(AuthLocators.STATE)
